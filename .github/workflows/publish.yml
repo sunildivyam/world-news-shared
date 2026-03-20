@@ -33,4 +33,21 @@ jobs:
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: pnpm publish --access public
+        run: |
+          # 1. Get current version from package.json using node
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+
+          echo "Checking if $PACKAGE_NAME@$PACKAGE_VERSION exists on registry..."
+
+          # 2. Use 'pnpm view' to check the registry.
+          # If the version exists, it returns 0 (true); if not, it returns an error code.
+          if pnpm view "$PACKAGE_NAME@$PACKAGE_VERSION" version > /dev/null 2>&1; then
+            echo "⚠️ Version $PACKAGE_VERSION is already live. Skipping publish to avoid 403 error."
+          else
+            echo "🚀 Version $PACKAGE_VERSION not found. Publishing..."
+            # 3. Publish using pnpm.
+            # --no-git-checks is usually required in CI to prevent pnpm from complaining
+            # about uncommitted files or tags.
+            pnpm publish --access public --no-git-checks
+          fi

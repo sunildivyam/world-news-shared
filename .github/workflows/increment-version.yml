@@ -5,8 +5,8 @@ on:
       - main
     types:
       - opened
-      - reopened
-      - synchronize
+      # - reopened
+      # - synchronize
 
 permissions:
   contents: write

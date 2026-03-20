@@ -49,5 +49,5 @@ jobs:
             # 3. Publish using pnpm.
             # --no-git-checks is usually required in CI to prevent pnpm from complaining
             # about uncommitted files or tags.
-            pnpm publish --access public --no-git-checks
+            pnpm publish --access public --no-git-checks --no-scripts
           fi

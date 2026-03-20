@@ -16,8 +16,13 @@ jobs:
           node-version: 24
           registry-url: https://registry.npmjs.org/
 
+      - name: Enable Corepack and install pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
+
       - name: Install dependencies
-        run: pnpm i
+        run: pnpm install --frozen-lockfile
 
       - name: Build package
         run: pnpm build
@@ -25,4 +30,4 @@ jobs:
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: pnpm publish
+        run: pnpm publish --access public

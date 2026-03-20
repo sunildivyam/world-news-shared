@@ -1,14 +1,19 @@
-name: Publish package to npm on main push
+name: Publish package to npm after version bump
 on:
-  push:
-    branches: [main]
+  workflow_run:
+    workflows: ["Increment package version on merged PR"]
+    types:
+      - completed
 
 jobs:
   publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node
         uses: actions/setup-node@v6

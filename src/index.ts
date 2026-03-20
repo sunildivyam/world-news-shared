@@ -20,7 +20,7 @@ export * from "./types/Tenant.interface";
 export * from "./types/TenantConfig.interface";
 export * from "./types/TrendMatrics.interface";
 export * from "./types/UserContext.interface";
-export * from "./types/Tenant.interface";
+export * from "./types/TenantContext.interface";
 export * from "./types/GeoContext.interface";
 export * from "./types/Language.interface";
 export * from "./types/RouteSegmentsContext.interface";

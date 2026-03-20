@@ -19,12 +19,17 @@ jobs:
           node-version: 24
           registry-url: https://registry.npmjs.org/
 
+      - name: Enable Corepack and install pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
+
       - name: Install dependencies
-        run: pnpm i
+        run: pnpm install --frozen-lockfile
 
       - name: Bump patch version
         run: |
-          npm version patch -m "chore(release): %s [skip ci]"
+          pnpm version patch -m "chore(release): %s [skip ci]"
 
       - name: Push version commit
         run: |

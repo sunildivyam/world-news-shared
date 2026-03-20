@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/index.js",
   "repository": {
-    "url": "https://github.com/sunildivyam/world-news-shared"
+    "url": "git+https://github.com/sunildivyam/world-news-shared.git"
   },
   "publishConfig": {
     "access": "public"

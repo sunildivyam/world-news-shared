@@ -33,4 +33,4 @@ npm login
 npm publish --access public
 ```
 
-If you need to publish for the first time under `@world-news`, make sure your npm org access is configured
+If you need to publish for the first time under `@world-news`, make sure your npm org access is configured.

@@ -4,6 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "main": "dist/index.js",
+  "repository": {
+    "url": "https://github.com/sunildivyam/world-news-shared"
+  },
   "publishConfig": {
     "access": "public"
   },

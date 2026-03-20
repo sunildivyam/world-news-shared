@@ -1,0 +1,31 @@
+name: Increment package version on merged PR
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  bump-version:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Bump patch version
+        run: |
+          npm version patch -m "chore(release): %s [skip ci]"
+
+      - name: Push version commit
+        run: |
+          git push origin HEAD:main

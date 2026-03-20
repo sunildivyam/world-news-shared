@@ -1,4 +1,3 @@
-// Entrypoint for shared types package
 export * from "./types/Address.interface";
 export * from "./types/AppContextValue";
 export * from "./types/AppError.class";
@@ -20,3 +19,8 @@ export * from "./types/SentimentMetrics.interface";
 export * from "./types/Tenant.interface";
 export * from "./types/TenantConfig.interface";
 export * from "./types/TrendMatrics.interface";
+export * from "./types/UserContext.interface";
+export * from "./types/Tenant.interface";
+export * from "./types/GeoContext.interface";
+export * from "./types/Language.interface";
+export * from "./types/RouteSegmentsContext.interface";
